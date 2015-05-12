@@ -1,0 +1,13 @@
+---
+:backends:
+  - json_mysql
+:mysql:
+  :host: dbhost
+  :user: dbuser
+  :pass: dbpassword
+  :database: dbname
+  :query:
+    - SELECT val FROM hiera WHERE var='%{key}' AND environment='%{environment}' AND hostgroup='%{hostgroup}' AND hostname='%{hostname}'
+    - SELECT val FROM hiera WHERE var='%{key}' AND environment='%{environment}' AND hostgroup='common' AND hostname='%{hostname}'
+    - SELECT val FROM hiera WHERE var='%{key}' AND environment='%{environment}' AND hostgroup='%{hostgroup}' AND hostname is NULL
+    - SELECT val FROM hiera WHERE var='%{key}' AND environment='%{environment}' AND hostgroup='common' AND hostname is NULL
